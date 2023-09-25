@@ -10,8 +10,8 @@
 
 # Project
 ---------------------------------------
-- OS : Windows10
-- Language : Java
-- Framework : Spring Boot, JPA, QueryDSL
+- OS : Windows 10
+- Language : Java 11
+- Framework : Spring Boot 2.8.16, JPA, QueryDSL
 - Tool : Intellij
 - DB : MySQL
