@@ -19,8 +19,6 @@ public class User {
     private String nickname;
 
 
-
-
     public void changeNickname(String nickname) {
         this.nickname = nickname;
     }

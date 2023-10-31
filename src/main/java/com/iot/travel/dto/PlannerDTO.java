@@ -11,9 +11,10 @@ import java.time.LocalDate;
 public class PlannerDTO {
     private Long pno;
     private Long puno;
+    private String ptitle;
     private String nickname;
-    private Integer pCount;
-    private Integer pDelete;
-    private LocalDate pStart;
-    private LocalDate pEnd;
+    private Integer pcount =0;
+    private Integer pdelete =0;
+    private LocalDate pstart;
+    private LocalDate pend;
 }

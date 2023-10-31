@@ -1,16 +1,27 @@
 package com.iot.travel.service;
 
+import com.iot.travel.dto.PageRequestDTO;
+import com.iot.travel.dto.PageResultDTO;
 import com.iot.travel.entity.Planner;
 import com.iot.travel.entity.User;
 import com.iot.travel.dto.PlannerDTO;
 
 public interface PlannerService {
 
+    // 플래너 목록 처리
+    PageResultDTO<PlannerDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+
     // 플래너 등록 서비스
     Long register(PlannerDTO dto);
 
-    // 플래너 목록화 서비스
+    // 플래너 조회 서비스
     PlannerDTO get(Long pno);
+
+    // 플래너 삭제 서비스
+    void remove(Long pno, PlannerDTO dto);
+
+    // 플래너 수정 서비스
+    void modify(PlannerDTO plannerDTO);
 
     default Planner dtoToEntity(PlannerDTO dto) {
         User user = User.builder().uno(dto.getPuno()).build();
@@ -18,10 +29,11 @@ public interface PlannerService {
         Planner planner = Planner.builder()
                 .pno(dto.getPno())
                 .puno(user)
-                .pCount(dto.getPCount())
-                .pDelete(dto.getPDelete())
-                .pStart(dto.getPStart())
-                .pEnd(dto.getPEnd())
+                .ptitle(dto.getPtitle())
+                .pcount(dto.getPcount())
+                .pdelete(dto.getPdelete())
+                .pstart(dto.getPstart())
+                .pend(dto.getPend())
                 .build();
         return planner;
     }
@@ -31,11 +43,12 @@ public interface PlannerService {
         PlannerDTO plannerDTO = PlannerDTO.builder()
                 .pno(planner.getPno())
                 .puno(user.getUno())
+                .ptitle(planner.getPtitle())
                 .nickname(user.getNickname())
-                .pCount(planner.getPCount())
-                .pDelete(planner.getPDelete())
-                .pStart(planner.getPStart())
-                .pEnd(planner.getPEnd())
+                .pcount(planner.getPcount())
+                .pdelete(planner.getPdelete())
+                .pstart(planner.getPstart())
+                .pend(planner.getPend())
                 .build();
         return plannerDTO;
     }
