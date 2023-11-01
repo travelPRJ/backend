@@ -11,7 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-@Controller
+@RestController
 @RequestMapping("/planner")
 @Log4j2
 @RequiredArgsConstructor
@@ -39,23 +39,26 @@ public class PlannerController {
     }
 
     @GetMapping({"/read", "/modify"})
-    public void read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long pno, Model model) {
+    public ResponseEntity<PlannerDTO> read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long pno, Model model) {
         log.info("pno : " + pno);
         PlannerDTO plannerDTO = plannerService.get(pno);
         log.info(plannerDTO);
         model.addAttribute("dto", plannerDTO);
+
+        return new ResponseEntity<>(plannerService.get(pno), HttpStatus.OK);
     }
 
     @PostMapping("/remove")
-    public String remove(@RequestParam("pno") Long pno, @ModelAttribute PlannerDTO plannerDTO) {
+    public ResponseEntity<Long> remove(@RequestBody PlannerDTO dto) {
 
-        plannerService.remove(pno, plannerDTO);
-
-        return "redirect:/planner/list";
+        plannerService.remove(dto);
+        return ResponseEntity.ok(dto.getPno());
     }
 
+
     @PostMapping("/modify")
-    public String modify(PlannerDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, RedirectAttributes redirectAttributes) {
+    public ResponseEntity<Long> modify(@RequestBody PlannerDTO dto, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, RedirectAttributes redirectAttributes) {
+
         log.info("post modify..................................");
         log.info("dto : "+ dto);
 
@@ -63,7 +66,8 @@ public class PlannerController {
 
         redirectAttributes.addAttribute("page", requestDTO.getPage());
 
-        return "redirect:/planner/read";
+        redirectAttributes.addAttribute("pno", dto.getPno());
+        return ResponseEntity.ok(dto.getPno());
     }
 
 }

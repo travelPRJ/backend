@@ -15,8 +15,10 @@ import com.iot.travel.entity.Planner;
 import com.iot.travel.repository.PlannerRepository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -55,19 +57,16 @@ public class PlannerServiceImpl implements PlannerService {
     // 플래너 삭제 서비스
     @Transactional
     @Override
-    public void remove(Long pno, PlannerDTO plannerDTO) {
-        plannerLocRepository.deleteByPno(pno);
-
-        Optional<Planner> optionalPlanner = repository.findById(pno);
-        if (optionalPlanner.isPresent()) {
-            Planner planner = optionalPlanner.get();
+    public void remove(PlannerDTO plannerDTO) {
+        Planner planner = repository.getReferenceById(plannerDTO.getPno());
 
             // 삭제 여부(pdelete)를 업데이트하는 부분
-            if (plannerDTO.getPdelete() == 0) {
+        if (plannerDTO.getPdelete() == 0) {
                 planner.changeDelete(1);
-            }
-            repository.save(planner);
         }
+
+        repository.save(planner);
+
     }
 
     // 플래너 수정 서비스

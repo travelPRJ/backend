@@ -18,7 +18,7 @@ public interface PlannerService {
     PlannerDTO get(Long pno);
 
     // 플래너 삭제 서비스
-    void remove(Long pno, PlannerDTO dto);
+    void remove(PlannerDTO dto);
 
     // 플래너 수정 서비스
     void modify(PlannerDTO plannerDTO);
