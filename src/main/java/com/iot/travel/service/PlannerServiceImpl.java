@@ -66,7 +66,6 @@ public class PlannerServiceImpl implements PlannerService {
         }
 
         repository.save(planner);
-
     }
 
     // 플래너 수정 서비스

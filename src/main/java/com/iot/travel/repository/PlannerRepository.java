@@ -20,6 +20,7 @@ public interface PlannerRepository extends JpaRepository<Planner, Long> {
             "from Planner p " +
             "left join p.puno u " +
             "left join PlannerLoc pl on pl.ppno = p " +
+            "where p.pdelete <> 1 " +
             "group by p",
             countQuery = "select count(p) from Planner p")
     Page<Object[]> getPlannerWithPlannerLoc(Pageable pageable);
