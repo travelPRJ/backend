@@ -1,13 +1,20 @@
 package com.iot.travel.service;
 
+import com.iot.travel.dto.PlannerDTO;
 import com.iot.travel.entity.Planner;
 import com.iot.travel.dto.PlannerLocDTO;
 import com.iot.travel.entity.PlannerLoc;
+
+import java.util.List;
 
 public interface PlannerLocService {
 
     // 플래너 세부 데이터 등록 서비스
     Long register(PlannerLocDTO dto);
+
+    List<PlannerLocDTO> getList(Long plno);
+
+    void modify(PlannerLocDTO dto);
 
     default PlannerLoc dtoToEntity(PlannerLocDTO dto) {
         Planner planner = Planner.builder().pno(dto.getPpno()).build();
@@ -27,11 +34,10 @@ public interface PlannerLocService {
         return plannerLoc;
     }
 
-    default PlannerLocDTO entityToDTO(PlannerLoc plannerLoc, Planner planner) {
+    default PlannerLocDTO entityToDTO(PlannerLoc plannerLoc) {
 
         PlannerLocDTO plannerLocDTO = PlannerLocDTO.builder()
                 .plno(plannerLoc.getPlno())
-                .ppno(planner.getPno())
                 .placeName(plannerLoc.getPlaceName())
                 .transport(plannerLoc.getTransport())
                 .region(plannerLoc.getRegion())
@@ -43,5 +49,4 @@ public interface PlannerLocService {
                 .build();
         return plannerLocDTO;
     }
-
 }
