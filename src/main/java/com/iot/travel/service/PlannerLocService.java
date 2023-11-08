@@ -14,7 +14,7 @@ public interface PlannerLocService {
 
     List<PlannerLocDTO> getList(Long plno);
 
-    void modify(PlannerLocDTO dto);
+    void modify(List<PlannerLocDTO> newPlannerLocDTOList, Long ppno);
 
     default PlannerLoc dtoToEntity(PlannerLocDTO dto) {
         Planner planner = Planner.builder().pno(dto.getPpno()).build();

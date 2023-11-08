@@ -34,4 +34,9 @@ public class PlannerLocController {
         return new ResponseEntity<>(plnoList, HttpStatus.OK);
     }
 
+    @PostMapping("/modify/{ppno}")
+    public ResponseEntity<String> modify(@PathVariable Long ppno, @RequestBody List<PlannerLocDTO> plannerLocDTOList) {
+        plannerLocService.modify(plannerLocDTOList, ppno);
+        return new ResponseEntity<>("PlannerLoc updated successfully", HttpStatus.OK);
+    }
 }

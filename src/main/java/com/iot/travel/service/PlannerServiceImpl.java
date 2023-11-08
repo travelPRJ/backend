@@ -62,10 +62,10 @@ public class PlannerServiceImpl implements PlannerService {
 
             // 삭제 여부(pdelete)를 업데이트하는 부분
         if (plannerDTO.getPdelete() == 0) {
-                planner.changeDelete(1);
+            planner.changeDelete(1);
+            plannerLocRepository.deleteByPno(plannerDTO.getPno());
+            repository.save(planner);
         }
-
-        repository.save(planner);
     }
 
     // 플래너 수정 서비스
