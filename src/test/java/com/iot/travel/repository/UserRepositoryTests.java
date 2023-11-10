@@ -15,7 +15,7 @@ public class UserRepositoryTests {
 
     @Test
     public void insertUsers() {
-        IntStream.rangeClosed(1,3).forEach(i -> {
+        IntStream.rangeClosed(1,4).forEach(i -> {
             User user = User.builder()
                     .nickname("user"+i)
                     .build();

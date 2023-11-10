@@ -1,6 +1,7 @@
 package com.iot.travel.controller;
 
 import com.iot.travel.dto.*;
+import com.iot.travel.entity.Planner;
 import com.iot.travel.service.PlannerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -23,8 +24,8 @@ public class PlannerController {
     public ResponseEntity<PageResultDTO<PlannerDTO, Object[]>> list(PageRequestDTO pageRequestDTO, Model model) {
         log.info("list..................." + pageRequestDTO);
         model.addAttribute("result", plannerService.getList(pageRequestDTO));
-
-        return new ResponseEntity<>(plannerService.getList(pageRequestDTO), HttpStatus.OK);
+        PageResultDTO<PlannerDTO, Object[]> plannerList = plannerService.getList(pageRequestDTO);
+        return new ResponseEntity<>(plannerList, HttpStatus.OK);
     }
 
     @GetMapping("/register")
