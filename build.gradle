@@ -48,6 +48,12 @@ dependencies {
 	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
 	annotationProcessor "com.querydsl:querydsl-apt:${queryDslVersion}"
 
+	//Spring security dependencies
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	//jwt dependencies
+	implementation group: 'com.auth0', name: 'java-jwt', version: '3.10.2'
+
 }
 
 tasks.named('test') {
