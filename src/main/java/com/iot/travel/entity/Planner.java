@@ -18,7 +18,7 @@ public class Planner {
     private Long pno;
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "puno")
-    private User puno;              // 참조하는 User 테이블의 pno
+    private User puno;              // 참조하는 User 테이블의 uno
     private String ptitle;           // 글 제목
     private Integer pcount;         // 스크랩 시 카운트 증가
     private Integer pdelete;        // 0 과 1로 삭제 여부 구분

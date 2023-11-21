@@ -15,6 +15,7 @@ public interface PlannerLocRepository extends JpaRepository<PlannerLoc, Long> {
     @Query("update PlannerLoc pl set pl.ldelete = 1 where pl.ppno.pno =:pno ")
     void deleteByPno(Long pno);
 
+    @Query("select pl from PlannerLoc pl where pl.ppno = :ppno and pl.ldelete = 0 order by pl.plno")
     List<PlannerLoc> getPlannerLocByPpnoOrderByPlno(Planner ppno);
 }
 
