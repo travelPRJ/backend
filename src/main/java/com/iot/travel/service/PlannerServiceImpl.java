@@ -4,7 +4,6 @@ import com.iot.travel.dto.PageRequestDTO;
 import com.iot.travel.dto.PageResultDTO;
 import com.iot.travel.entity.User;
 import com.iot.travel.repository.PlannerLocRepository;
-import com.iot.travel.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
