@@ -22,4 +22,6 @@ public class Scrap {
     @JoinColumn(name = "spno")
     private Planner spno;    // 참조하는 Planner 테이블의 pno
     private Integer sFlag;      // 0 과 1로 삭제 여부 구분
+
+    public void changeFlag(Integer sFlag) { this.sFlag = sFlag; }
 }
