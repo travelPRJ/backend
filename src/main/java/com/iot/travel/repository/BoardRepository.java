@@ -1,5 +1,6 @@
 package com.iot.travel.repository;
 
+import com.iot.travel.repository.search.SearchBoardRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.iot.travel.entity.Board;
 import org.springframework.data.domain.Page;
@@ -8,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
-public interface BoardRepository extends JpaRepository<Board, Long> {
+public interface BoardRepository extends JpaRepository<Board, Long>, SearchBoardRepository {
 
     @Query("select b, u from Board b left join b.buno u  where b.bno =:bno")
     Object getBoardWithUser(@Param("bno") Long bno);

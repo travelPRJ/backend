@@ -27,4 +27,7 @@ public class Reply extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "rbno")
     private Board rbno; // 댓글이 작성된 게시글 번호
+
+    public void changeContent(String rcontent) { this.rcontent = rcontent; }
+    public void changeDelete(Integer rdelete) { this.rdelete = rdelete; }
 }
