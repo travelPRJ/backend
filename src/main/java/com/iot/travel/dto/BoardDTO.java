@@ -12,6 +12,7 @@ public class BoardDTO {
     private Long bno;
     private Long buno;
     private String btitle;
+    private String bnickname;
     private String bcontent;
     private Integer bdelete =0;
     private LocalDate regDate;

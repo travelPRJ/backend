@@ -42,6 +42,7 @@ public interface BoardService {
         BoardDTO boardDTO = BoardDTO.builder()
                 .bno(board.getBno())
                 .buno(user.getUno())
+                .bnickname(user.getNickname())
                 .btitle(board.getBtitle())
                 .bcontent(board.getBcontent())
                 .bdelete(board.getBdelete())
