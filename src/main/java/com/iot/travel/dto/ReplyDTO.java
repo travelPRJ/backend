@@ -12,7 +12,7 @@ public class ReplyDTO {
 
     private Long rno;
     private Long runo;
-    private String nickname;
+    private String rnickname;
     private Long rbno;
     private String rcontent;
     private Integer rdelete = 0;
