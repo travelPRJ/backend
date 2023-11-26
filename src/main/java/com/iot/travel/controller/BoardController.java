@@ -39,7 +39,7 @@ public class BoardController {
 
     @GetMapping({"/read", "/modify"})
     public ResponseEntity<BoardDTO> read(@ModelAttribute("requestDTO") PageRequestDTO pageRequestDTO, Long bno, Model model) {
-        log.info("pno : " + bno);
+        log.info("bno : " + bno);
         BoardDTO boardDTO = boardService.get(bno);
         log.info(boardDTO);
         model.addAttribute("dto", boardDTO);

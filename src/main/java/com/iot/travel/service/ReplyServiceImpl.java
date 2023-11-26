@@ -1,5 +1,6 @@
 package com.iot.travel.service;
 
+import com.iot.travel.dto.BoardDTO;
 import com.iot.travel.entity.User;
 import com.iot.travel.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +13,7 @@ import com.iot.travel.repository.ReplyRepository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,7 +41,7 @@ public class ReplyServiceImpl implements ReplyService {
 
         return result.stream().map(reply -> {
             User user = reply.getRuno();
-            return entityToDTO(reply);
+            return entityToDTO(reply, user);
         }).collect(Collectors.toList());
     }
 

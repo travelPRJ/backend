@@ -26,11 +26,12 @@ public interface ReplyService {
         return reply;
     }
 
-    default ReplyDTO entityToDTO(Reply reply) {
+    default ReplyDTO entityToDTO(Reply reply, User user) {
         ReplyDTO dto = ReplyDTO.builder()
                 .rno(reply.getRno())
                 .rcontent(reply.getRcontent())
                 .rdelete(reply.getRdelete())
+                .rnickname(user.getNickname())
                 .runo(reply.getRuno().getUno())
                 .rbno(reply.getRbno().getBno())
                 .regDate(reply.getRegDate())
