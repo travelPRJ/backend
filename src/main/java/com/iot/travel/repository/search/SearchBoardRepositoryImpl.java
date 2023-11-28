@@ -43,6 +43,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
         jpqlQuery.leftJoin(reply).on(reply.rbno.eq(board));
 
         JPQLQuery<Tuple> tuple = jpqlQuery.select(board, user.uno, reply.count());
+
         tuple.groupBy(board);
 
         log.info("-----------------------------------");
@@ -69,8 +70,18 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 
         JPQLQuery<Tuple> tuple = jpqlQuery.select(board, user, reply.count());
 
+
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         BooleanExpression expression = board.bno.gt(0L);
+
+        // 글이 삭제된 경우 포함시키지 않음
+        booleanBuilder.and(expression)
+                .and(board.bdelete.ne(1));
+
+        // 댓글이 삭제된 경우 포함시키지 않음
+        booleanBuilder.and(
+                reply.rdelete.ne(1).or(reply.isNull())
+        );
 
         booleanBuilder.and(expression);
         if (type != null) {
